@@ -17,7 +17,8 @@ import { AppComponent } from './app.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    UserRegistrationFormComponent,
   ],
   imports: [
     BrowserModule,
@@ -30,7 +31,6 @@ import { AppComponent } from './app.component';
     MatDialogModule,
     MatSnackBarModule,
     FormsModule,
-    UserRegistrationFormComponent,
     FetchApiDataService,
     LoginComponent
   ],

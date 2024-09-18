@@ -9,39 +9,46 @@ import { FetchApiDataService } from '../fetch-api-data.service';
 // This import is used to display notifications back to the user
 import { MatSnackBar } from '@angular/material/snack-bar';
 
-
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrl: './login.component.scss'
+  styleUrl: './login.component.scss',
 })
 export class LoginComponent implements OnInit {
-
-  @Input() userData = { username: '', password: '' };
+  @Input() userData = { Username: '', Password: '' };
 
   constructor(
     public fetchApiData: FetchApiDataService,
     public dialogRef: MatDialogRef<LoginComponent>,
-    public snackBar: MatSnackBar) { }
-  ngOnInit(): void {
-
-  }
+    public router: Router,
+    public snackBar: MatSnackBar
+  ) { }
+  ngOnInit(): void { }
 
   loginUser(): void {
-    this.fetchApiData.userLogin(this.userData).subscribe((result) => {
-      // Logic for a successful user registration goes here! (To be implemented)
-      localStorage.setItem("user", JSON.stringify(result.user));
-      localStorage.setItem("token", result.token);
-      this.dialogRef.close(); // This will close the modal on success!
-      this.snackBar.open(`Login Successful, Hello ${result.user.Username}`, 'OK', {
-        duration: 2000
-      });
-
-    }, (result) => {
-      this.snackBar.open("login unsuccessful, please try again", 'OK', {
-        duration: 2000
-      });
-    });
+    this.fetchApiData.userLogin(this.userData).subscribe(
+      (result) => {
+        // Logic for a successful user registration goes here! (To be implemented)
+        localStorage.setItem('user', JSON.stringify(result.user));
+        localStorage.setItem('token', result.token);
+        this.dialogRef.close(); // This will close the modal on success!
+        this.snackBar.open(
+          `Login Successful, Hello ${result.user.Username}`,
+          'OK',
+          {
+            duration: 2000,
+          }
+        );
+        this.router.navigate(['movies']);
+      },
+      (result) => {
+        this.snackBar.open('login unsuccessful, please try again', 'OK', {
+          duration: 2000,
+        });
+      }
+    );
+    this.router.navigate(['welcome']);
   }
 }

@@ -44,7 +44,7 @@ export class LoginComponent implements OnInit {
         this.router.navigate(['movies']);
       },
       (result) => {
-        this.snackBar.open('login unsuccessful, please try again', 'OK', {
+        this.snackBar.open('Login unsuccessful, please try again', 'OK', {
           duration: 2000,
         });
       }

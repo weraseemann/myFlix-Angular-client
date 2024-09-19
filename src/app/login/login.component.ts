@@ -8,13 +8,17 @@ import { FetchApiDataService } from '../fetch-api-data.service';
 
 // This import is used to display notifications back to the user
 import { MatSnackBar } from '@angular/material/snack-bar';
-
+import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss',
+  standalone: true,
+  imports: [
+    FormsModule,
+  ],
 })
 export class LoginComponent implements OnInit {
   @Input() userData = { Username: '', Password: '' };

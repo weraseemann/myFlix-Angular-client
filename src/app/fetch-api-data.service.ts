@@ -9,7 +9,7 @@ import { Observable, throwError } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 // Declaring the api url that will provide data for the client app
-const apiUrl = 'https://myflix-app-led6.onrender.com/';
+const apiUrl = 'https://mymovie-ff36c9df3695.herokuapp.com/';
 
 @Injectable({
   providedIn: 'root',

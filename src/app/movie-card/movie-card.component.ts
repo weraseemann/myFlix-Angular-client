@@ -5,13 +5,12 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatCardModule, MatCardActions } from '@angular/material/card';
 import { CommonModule } from '@angular/common'; // Import CommonModule
 import { BrowserModule } from '@angular/platform-browser';
-import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { FormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { HttpClientModule } from '@angular/common/http';
-
 
 @Component({
   selector: 'app-movie-card',

@@ -3,7 +3,6 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { HttpClientModule } from '@angular/common/http';
 import { MatCardModule } from '@angular/material/card';
 
-
 import { UserRegistrationFormComponent } from '../user-registration-form/user-registration-form.component';
 import { LoginComponent } from '../login/login.component'
 
@@ -15,8 +14,6 @@ import { LoginComponent } from '../login/login.component'
   imports: [
     MatDialogModule,
     HttpClientModule,
-    UserRegistrationFormComponent,
-    LoginComponent,
     MatCardModule],
 })
 export class WelcomePageComponent implements OnInit {

@@ -1,7 +1,6 @@
 
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
-import { FetchApiDataService } from './fetch-api-data.service';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { BrowserModule } from '@angular/platform-browser';
 import { MatInputModule } from '@angular/material/input';
@@ -41,16 +40,17 @@ const appRoutes: Routes = [
     MovieCardComponent,
     WelcomePageComponent,
     UserProfileComponent,
-    MessageBoxComponent
+    MessageBoxComponent,
+    
   ],
   imports: [
     RouterModule.forRoot(appRoutes),
     BrowserModule,
-    AppComponent,
     HttpClientModule,
     AppRoutingModule,
     MatInputModule,
     MatButtonModule,
+    AppComponent,
     MatCardModule,
     MatCardActions,
     MatFormFieldModule,
@@ -62,6 +62,6 @@ const appRoutes: Routes = [
 
   ],
   providers: [provideAnimationsAsync()],
-
+  bootstrap: [AppComponent],
 })
 export class AppModule { }

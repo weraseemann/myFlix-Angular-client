@@ -5,6 +5,8 @@ import { provideAnimations } from '@angular/platform-browser/animations';
 import { importProvidersFrom } from '@angular/core';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+import { AppModule } from './app/app.module';
 
 bootstrapApplication(AppComponent, {
   providers: [
@@ -13,3 +15,6 @@ bootstrapApplication(AppComponent, {
     importProvidersFrom(MatDialogModule, MatSnackBarModule),
   ],
 }).catch((err) => console.error(err));
+
+platformBrowserDynamic().bootstrapModule(AppModule)
+  .catch(err => console.error(err));

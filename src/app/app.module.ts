@@ -2,6 +2,7 @@
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FetchApiDataService } from './fetch-api-data.service';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { BrowserModule } from '@angular/platform-browser';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
@@ -20,26 +21,32 @@ import { LoginComponent } from './login/login.component';
 import { AppComponent } from './app.component';
 import { MovieCardComponent } from './movie-card/movie-card.component';
 import { WelcomePageComponent } from './welcome-page/welcome-page.component';
+import { MessageBoxComponent } from './message-box/message-box.component';
+import { UserProfileComponent } from './user-profile/user-profile.component';
 
 
 const appRoutes: Routes = [
   { path: 'welcome', component: WelcomePageComponent },
   { path: 'movies', component: MovieCardComponent },
+  { path: 'profile', component: UserProfileComponent },
   { path: '', redirectTo: 'welcome', pathMatch: 'prefix' },
 ];
 
 
 @NgModule({
   declarations: [
-    AppComponent,
+    
     UserRegistrationFormComponent,
     LoginComponent,
     MovieCardComponent,
     WelcomePageComponent,
+    UserProfileComponent,
+    MessageBoxComponent
   ],
   imports: [
     RouterModule.forRoot(appRoutes),
     BrowserModule,
+    AppComponent,
     HttpClientModule,
     AppRoutingModule,
     MatInputModule,
@@ -54,8 +61,7 @@ const appRoutes: Routes = [
     MatIconModule
 
   ],
-  providers: [],
+  providers: [provideAnimationsAsync()],
 
-  bootstrap: [AppComponent]
 })
 export class AppModule { }

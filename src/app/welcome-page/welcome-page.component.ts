@@ -10,11 +10,6 @@ import { LoginComponent } from '../login/login.component'
   selector: 'app-welcome-page',
   templateUrl: './welcome-page.component.html',
   styleUrls: ['./welcome-page.component.scss'],
-  standalone: true,
-  imports: [
-    MatDialogModule,
-    HttpClientModule,
-    MatCardModule],
 })
 export class WelcomePageComponent implements OnInit {
   constructor(public dialog: MatDialog) { }

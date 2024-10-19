@@ -45,10 +45,10 @@ export class FetchApiDataService {
   }
 
   // Get user details
-  public getUser(): Observable<any> {
+  public getUserByID(userID: string): Observable<any> {
     const username = this.getUserData().Username;
     return this.http
-      .get(apiUrl + `users/${username}`, {
+      .get(apiUrl + `users/${userID}`, {
         headers: new HttpHeaders({
           Authorization: 'Bearer ' + this.getToken(),
         }),
@@ -125,12 +125,12 @@ export class FetchApiDataService {
   }
 
   // Add a movie to user's favorites
-  public addFavoriteMovie(title: string): Observable<any> {
+  public addFavoriteMovie(userID: string, title: string): Observable<any> {
     const username = this.getUserData().Username;
     console.log(username, title);
     return this.http
       .post(
-        apiUrl + `users/${username}/movies/${title}`,
+        apiUrl + `users/${userID}/movies/${title}`,
         {},
         {
           headers: new HttpHeaders({
@@ -143,10 +143,10 @@ export class FetchApiDataService {
   }
 
   // Remove a movie from user's favorites
-  public removeFavoriteMovie(title: string): Observable<any> {
+  public removeFavoriteMovie(userID: string, title: string): Observable<any> {
     const username = this.getUserData().Username;
     return this.http
-      .delete(apiUrl + `users/${username}/movies/${title}`, {
+      .delete(apiUrl + `users/${userID}/movies/${title}`, {
         headers: new HttpHeaders({
           Authorization: 'Bearer ' + this.getToken(),
         }),

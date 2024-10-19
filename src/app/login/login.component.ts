@@ -8,20 +8,15 @@ import { FetchApiDataService } from '../fetch-api-data.service';
 
 // This import is used to display notifications back to the user
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss',
-  standalone: true,
-  imports: [
-    FormsModule,
-  ],
 })
 export class LoginComponent implements OnInit {
-  @Input() userData = { Username: '', Password: '' };
+  @Input() userData = { username: '', password: '' };
 
   constructor(
     public fetchApiData: FetchApiDataService,
@@ -31,28 +26,24 @@ export class LoginComponent implements OnInit {
   ) { }
   ngOnInit(): void { }
 
-  loginUser(): void {
-    this.fetchApiData.userLogin(this.userData).subscribe(
-      (result) => {
-        // Logic for a successful user registration goes here! (To be implemented)
-        localStorage.setItem('user', JSON.stringify(result.user));
-        localStorage.setItem('token', result.token);
-        this.dialogRef.close(); // This will close the modal on success!
-        this.snackBar.open(
-          `Login Successful, Hello ${result.user.Username}`,
-          'OK',
-          {
-            duration: 2000,
-          }
-        );
-        this.router.navigate(['movies']);
-      },
-      (result) => {
-        this.snackBar.open('Login unsuccessful, please try again', 'OK', {
-          duration: 2000,
+  logInUser() : void {
+    this.fetchApiData.userLogin(this.userData).subscribe(res => {
+        this.dialogRef.close();
+        this.snackBar.open(`Login success, Welcom ${res.user.username}`, "OK", {
+            duration: 2000
         });
-      }
-    );
-    this.router.navigate(['welcome']);
-  }
+        let user = {
+            ...res.user,
+            id: res.user._id,
+            password: this.userData.password,
+            token: res.token
+        }
+        localStorage.setItem("user", JSON.stringify(user));
+        this.router.navigate(["movies"]);
+    }, res => {
+        this.snackBar.open("Login fail", "OK", {
+            duration: 2000
+        })
+    })
+}
 }

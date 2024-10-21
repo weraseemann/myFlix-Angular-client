@@ -1,15 +1,10 @@
 
 // src/app/user-registration-form/user-registration-form.component.ts
 import { Component, OnInit, Input } from '@angular/core';
-import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
+import { MatDialogRef } from '@angular/material/dialog';
 import { FetchApiDataService } from '../fetch-api-data.service';
-import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
-import { MatCardModule } from '@angular/material/card';
-import { FormsModule } from '@angular/forms';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
-import { MatButtonModule } from '@angular/material/button';
-import { HttpClientModule } from '@angular/common/http';
+import { MatSnackBar} from '@angular/material/snack-bar';
+
 
 @Component({
   selector: 'app-user-registration-form',
@@ -18,7 +13,12 @@ import { HttpClientModule } from '@angular/common/http';
   
 })
 export class UserRegistrationFormComponent implements OnInit {
-  @Input() userData = { username: '', password: '', email: '', birthday: '' };
+  @Input() userData = { 
+    Username: '', 
+    Password: '', 
+    Email: '', 
+    Birthday: '' 
+  };
 
   constructor(
     public fetchApiData: FetchApiDataService,
@@ -27,15 +27,18 @@ export class UserRegistrationFormComponent implements OnInit {
   ) { }
 
   ngOnInit(): void { }
-
+// This is the function responsible for sending the form inputs to the backend
   registerUser(): void {
     this.fetchApiData.userRegistration(this.userData).subscribe(
       (result) => {
+        // Logic for a successful user registration goes here! (To be implemented)
         this.dialogRef.close(); // Close the dialog on success
-        this.snackBar.open(result, 'OK', { duration: 2000 });
+        this.snackBar.open(result, 'OK', { 
+        duration: 2000 });
       },
       (result) => {
-        this.snackBar.open(result, 'OK', { duration: 2000 });
+        this.snackBar.open(result, 'OK', { 
+        duration: 2000 });
       }
     );
   }

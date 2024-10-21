@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FetchApiDataService } from '../fetch-api-data.service';
 import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar'; // Optional, if you want notifications
 
 @Component({
   selector: 'app-user-profile',
@@ -12,6 +13,7 @@ export class UserProfileComponent implements OnInit {
   favoriteMovies: any[] = [];
   constructor(
     public fetchApiData: FetchApiDataService,
+    public snackBar: MatSnackBar, // Optional for showing feedback
     public router: Router
   ) {
     this.userData = JSON.parse(localStorage.getItem("user") || "");
@@ -53,7 +55,7 @@ export class UserProfileComponent implements OnInit {
   }
 
   getUser(): void {
-    this.fetchApiData.getUserByID(this.userData.userID).subscribe((res: any) => {
+    this.fetchApiData.getUserData().Username.subscribe((res: any) => {
       this.userData = {
         ...res,
         id: res._id,
@@ -65,13 +67,22 @@ export class UserProfileComponent implements OnInit {
     })
   }
 
-  removeFromFavorite(movie: any): void {
-    this.fetchApiData.FavoriteMovie(this.userData.id, movie.title).subscribe((res: any) => {
-      this.userData.favoriteMovies = res.favoriteMovies;
-      this.getfavoriteMovies();
-    }, (err: any) => {
-      console.error(err)
-    })
+  // Method to remove a movie from favorites
+  removeFavoriteMovie(movieTitle: string): void {
+    this.fetchApiData.removeFavoriteMovie(movieTitle).subscribe((response: any) => {
+      // Remove the movie from the favoriteMovies array
+      this.favoriteMovies = this.favoriteMovies.filter((movie) => movie !== movieTitle);
+
+      // Provide feedback to the user
+      this.snackBar.open(`${movieTitle} has been removed from your favorites`, 'OK', {
+        duration: 2000,
+      });
+    }, (error) => {
+      console.error(error);
+      this.snackBar.open('Error: Movie could not be removed', 'OK', {
+        duration: 2000,
+      });
+    });
   }
   
   logout(): void {

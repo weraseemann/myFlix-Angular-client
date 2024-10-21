@@ -59,7 +59,6 @@ const appRoutes: Routes = [
     FormsModule,
     BrowserAnimationsModule,
     MatIconModule
-
   ],
   providers: [provideAnimationsAsync()],
   bootstrap: [AppComponent],

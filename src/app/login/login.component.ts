@@ -16,7 +16,7 @@ import { Router } from '@angular/router';
   styleUrl: './login.component.scss',
 })
 export class LoginComponent implements OnInit {
-  @Input() userData = { username: '', password: '' };
+  @Input() userData = { Username: '', Password: '' };
 
   constructor(
     public fetchApiData: FetchApiDataService,
@@ -29,13 +29,13 @@ export class LoginComponent implements OnInit {
   logInUser() : void {
     this.fetchApiData.userLogin(this.userData).subscribe(res => {
         this.dialogRef.close();
-        this.snackBar.open(`Login success, Welcom ${res.user.username}`, "OK", {
+        this.snackBar.open(`Login success, Welcom ${res.user.Username}`, "OK", {
             duration: 2000
         });
         let user = {
             ...res.user,
             id: res.user._id,
-            password: this.userData.password,
+            password: this.userData.Password,
             token: res.token
         }
         localStorage.setItem("user", JSON.stringify(user));

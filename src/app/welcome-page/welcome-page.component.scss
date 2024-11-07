@@ -1,0 +1,32 @@
+.main-page {
+    display: flex;
+  flex-direction: column;
+  justify-content: flex-start;     /* Align elements to the top */
+  align-items: center;
+  height: 100vh;
+  background-color: #333;
+  padding-top: 10vh;               /* Push content down slightly */
+}
+  
+  h1 {
+    color: lightgray;
+    text-align: center;
+    margin-bottom: 150px;        /* Space below h1 */
+  }
+  .button-group {
+    display: flex;
+    gap: 10px;                  /* Space between buttons */
+    padding: 10px 20px;
+    background-color: #555;     /* Button background color */
+    color: white;
+    border: none;
+    border-radius: 5px;         /* Rounded corners */
+    cursor: pointer;
+
+  }
+
+  .button-group:hover {
+    background-color: #777;     /* Slightly lighter background on hover */
+  }
+  
+  

@@ -1,6 +1,9 @@
-
-import { HttpClientModule } from '@angular/common/http';
-import { NgModule } from '@angular/core';
+import {
+  HttpClientModule,
+  provideHttpClient,
+  withFetch,
+} from '@angular/common/http';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { BrowserModule } from '@angular/platform-browser';
 import { MatInputModule } from '@angular/material/input';
@@ -23,7 +26,6 @@ import { WelcomePageComponent } from './welcome-page/welcome-page.component';
 import { MessageBoxComponent } from './message-box/message-box.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 
-
 const appRoutes: Routes = [
   { path: 'welcome', component: WelcomePageComponent },
   { path: 'movies', component: MovieCardComponent },
@@ -31,36 +33,40 @@ const appRoutes: Routes = [
   { path: '', redirectTo: 'welcome', pathMatch: 'prefix' },
 ];
 
-
 @NgModule({
   declarations: [
-    
+    AppComponent,
     UserRegistrationFormComponent,
     LoginComponent,
     MovieCardComponent,
     WelcomePageComponent,
     UserProfileComponent,
     MessageBoxComponent,
-    
   ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  exports: [RouterModule],
   imports: [
-    RouterModule.forRoot(appRoutes),
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
     MatInputModule,
     MatButtonModule,
-    AppComponent,
+    // AppComponent,
     MatCardModule,
     MatCardActions,
     MatFormFieldModule,
     MatDialogModule,
     MatSnackBarModule,
     FormsModule,
+    RouterModule.forRoot(appRoutes),
     BrowserAnimationsModule,
-    MatIconModule
+    MatIconModule,
   ],
-  providers: [provideAnimationsAsync()],
+  providers: [
+    provideHttpClient(
+      withFetch() // Enable fetch APIs
+    ),
+  ],
   bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

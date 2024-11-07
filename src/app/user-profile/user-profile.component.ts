@@ -28,7 +28,7 @@ export class UserProfileComponent implements OnInit {
       this.userData = {
         ...res,
         id: res._id,
-        password: this.userData.Password,
+        password: this.userData.password,
         token: this.userData.token
       };
       localStorage.setItem("user", JSON.stringify(this.userData));

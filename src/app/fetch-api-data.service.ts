@@ -15,8 +15,16 @@ const apiUrl = 'https://mymovie-ff36c9df3695.herokuapp.com/';
   providedIn: 'root',
 })
 export class FetchApiDataService {
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
+  // Headers with token for authenticated routes
+  private getHeaders(): HttpHeaders {
+    const token = localStorage.getItem('token');
+    console.log('token token', token);
+    return new HttpHeaders({
+      Authorization: 'Bearer ' + token,
+    });
+  }
   // Get token from local storage
   public getToken(): any {
     const token = localStorage.getItem('token');
@@ -81,16 +89,21 @@ export class FetchApiDataService {
   }
 
   // Get all movies
+  // public getAllMovies(): Observable<any> {
+  //   return this.http
+  //     .get(apiUrl + 'movies', {
+  //       headers: new HttpHeaders({
+  //         Authorization: 'Bearer ' + this.getToken(),
+  //       }),
+  //     })
+  //     .pipe(map(this.extractResponseData), catchError(this.handleError));
+  // }
+  // Get all movies
   public getAllMovies(): Observable<any> {
     return this.http
-      .get(apiUrl + 'movies', {
-        headers: new HttpHeaders({
-          Authorization: 'Bearer ' + this.getToken(),
-        }),
-      })
+      .get(apiUrl + 'movies', { headers: this.getHeaders() })
       .pipe(map(this.extractResponseData), catchError(this.handleError));
   }
-
   // Get a movie by title
   public getMovie(title: string): Observable<any> {
     return this.http

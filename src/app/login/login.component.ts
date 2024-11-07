@@ -23,27 +23,31 @@ export class LoginComponent implements OnInit {
     public dialogRef: MatDialogRef<LoginComponent>,
     public router: Router,
     public snackBar: MatSnackBar
-  ) { }
-  ngOnInit(): void { }
+  ) {}
+  ngOnInit(): void {}
 
-  logInUser() : void {
-    this.fetchApiData.userLogin(this.userData).subscribe(res => {
+  logInUser(): void {
+    this.fetchApiData.userLogin(this.userData).subscribe(
+      (res) => {
         this.dialogRef.close();
-        this.snackBar.open(`Login successful, welcome ${res.user.Username}`, "OK", {
-            duration: 2000
+        this.snackBar.open(`Login success, Welcom ${res.user.Username}`, 'OK', {
+          duration: 2000,
         });
         let user = {
-            ...res.user,
-            id: res.user._id,
-            password: this.userData.Password,
-            token: res.token
-        }
-        localStorage.setItem("user", JSON.stringify(user));
-        this.router.navigate(["movies"]);
-    }, res => {
-        this.snackBar.open("Login fail", "OK", {
-            duration: 2000
-        })
-    })
-}
+          ...res.user,
+          id: res.user._id,
+          password: this.userData.Password,
+          token: res.token,
+        };
+        localStorage.setItem('user', JSON.stringify(res.user));
+        localStorage.setItem('token', res.token);
+        this.router.navigate(['movies']);
+      },
+      (res) => {
+        this.snackBar.open('Login fail', 'OK', {
+          duration: 2000,
+        });
+      }
+    );
+  }
 }

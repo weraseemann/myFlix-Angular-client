@@ -29,7 +29,7 @@ export class LoginComponent implements OnInit {
   logInUser() : void {
     this.fetchApiData.userLogin(this.userData).subscribe(res => {
         this.dialogRef.close();
-        this.snackBar.open(`Login success, Welcom ${res.user.Username}`, "OK", {
+        this.snackBar.open(`Login successful, welcome ${res.user.Username}`, "OK", {
             duration: 2000
         });
         let user = {

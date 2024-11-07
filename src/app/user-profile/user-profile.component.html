@@ -1,4 +1,5 @@
-<button
+<div>
+<button class="logout-button"
     mat-raised-button
     (click)="logout()"
     color="primary"
@@ -6,6 +7,7 @@
 >
 Logout
 </button>
+</div>
 <mat-card>
     <mat-card-header>
     <mat-card-title>User Profile</mat-card-title>
@@ -16,7 +18,7 @@ Logout
                 <label>Username</label>
                 <input
                     matInput
-                    [(ngModel)]="userData.username"
+                    [(ngModel)]="userData.Username"
                     placeholder="Username"
                     type="text"
                     name="Username"
@@ -27,7 +29,7 @@ Logout
                 <label>Password</label>
                 <input
                     matInput
-                    [(ngModel)]="userData.password"
+                    [(ngModel)]="userData.Password"
                     type = "password"
                     placeholder="Password"
                     name="Password"
@@ -38,7 +40,7 @@ Logout
                 <label>Email</label>
                 <input
                     matInput
-                    [(ngModel)]="userData.email"
+                    [(ngModel)]="userData.Email"
                     type = "email"
                     placeholder="Email"
                     name="Email"
@@ -49,7 +51,7 @@ Logout
                 <label>Birthday</label>
                 <input
                     matInput
-                    [(ngModel)]="userData.birthday"
+                    [(ngModel)]="userData.Birthday"
                     type = "date"
                     placeholder="Birthday"  
                     name="Birthday"

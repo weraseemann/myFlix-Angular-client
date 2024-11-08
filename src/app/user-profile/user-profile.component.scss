@@ -41,9 +41,10 @@
   
   /* Buttons Styling */
   button.mat-raised-button {
-    background-color: #333;    /* Dark button background */
-    color: #ffcc00;            /* Accent color for text */
+    color: #ffcc00;            /* Accent color for navbar buttons */
+    background-color: #333;
     border: none;
+    margin-left: 10px;
   }
   
   button.mat-raised-button:hover {
@@ -95,4 +96,17 @@
   /* Extra Margin for Buttons */
   .button-group button {
     margin: 5px;
+  }
+
+  /* Navbar styling */
+  nav {
+    display: flex;
+    justify-content: flex-end; /* Align navbar to the right */
+    margin-bottom: 20px;
+  }
+  
+  nav button {
+    color: #ffcc00;            /* Accent color for navbar buttons */
+    background-color: #333;
+    border: none;
   }

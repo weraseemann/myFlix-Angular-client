@@ -40,14 +40,14 @@
   }
   
   /* Buttons Styling */
-  button.mat-raised-button {
-    color: #ffcc00;            /* Accent color for navbar buttons */
+  .mat-card-button {
+    color: #ffcc00;         
     background-color: #333;
     border: none;
     margin-left: 10px;
   }
   
-  button.mat-raised-button:hover {
+  .mat-card-button:hover {
     background-color: #555;    /* Lighter color on hover */
   }
   

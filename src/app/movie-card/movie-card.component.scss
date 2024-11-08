@@ -10,7 +10,129 @@
     margin: 10px;
 }
 
+
 .mat-card-title {
     color: gray;
 }
 
+/* Main container background and text color */
+/* Ensure the component covers the full page height */
+:host {
+    display: block;
+    background-color: #121212; /* Dark background */
+    color: #e0e0e0;
+    min-height: 100vh;         /* Ensures it covers the full viewport height */
+    padding: 20px;
+  }
+  
+  /* Navbar Styles */
+nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;              /* Full width across the viewport */
+    background-color: #1e1e1e; /* Dark background color for night theme */
+    color: #e0e0e0;            /* Light text color */
+    padding: 20px 20px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3); /* Adds shadow for depth */
+    z-index: 1000;             /* Keeps navbar above other content */
+  }
+  
+  /* Add margin-top to main content so it’s not hidden behind the navbar */
+  .main-content {
+    margin-top: 80px; /* Adjust this based on navbar height */
+  }
+  /* Navbar styling */
+  nav {
+    display: flex;
+    justify-content: flex-end; /* Align navbar to the right */
+    margin-bottom: 20px;
+  }
+  
+  nav button {
+    color: #ffcc00;            /* Accent color for navbar buttons */
+    background-color: #333;
+    border: none;
+    
+    margin-right: 20px;
+  }
+  
+  nav.logout-button {
+    color: #ff6666;            /* Red accent for logout button */
+    background-color: #222;
+  }
+  
+  .logout-button:hover {
+    background-color: #444;
+  }
+  
+  button.mat-button:hover {
+    background-color: #444;    /* Darker on hover */
+  }
+  
+  /* Styling for individual movie cards */
+  .mat-card-body {
+    background-color: #1e1e1e; /* Dark card background */
+    color: #e0e0e0;            /* Light text color */
+    border-radius: 8px;        /* Rounded corners for cards */
+    border: 1px solid #333;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Shadow for depth */
+    margin: 10px;
+    margin-top: 100px;              /* Space between cards */
+  }
+  
+  /* Card Header */
+  mat-card-header {
+    border-bottom: 1px solid #444; /* Divider line for header */
+    padding-bottom: 10px;
+  }
+  
+  mat-card-title {
+    color: #ffcc00;            /* Accent color for title */
+  }
+  
+  mat-card-subtitle {
+    color: #999;               /* Lighter color for subtitle */
+  }
+  
+  /* Image Styling */
+  img[mat-card-image] {
+    border-radius: 5px;        /* Rounded corners for images */
+    width: 100%;
+    height: auto;
+  }
+  
+  /* Card Actions (Buttons and Icons) */
+  mat-card-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 10px;
+  }
+  
+  button.mat-button {
+    color: #ffcc00;            /* Accent color for button text */
+    background-color: #333;
+    margin: 0 5px;
+    border: none;
+    border-radius: 4px;
+  }
+  
+  button.mat-button:hover {
+    background-color: #555;
+  }
+
+   /* Logout Button Specific Styling */
+   .logout-button {
+    color: #ff6666;            /* Red accent for logout */
+    background-color: #222;
+  }
+  
+  .mat-icon {
+    cursor: pointer;
+    color: #ff6666;            /* Red color for favorite icon */
+  }
+  
+  .mat-icon:hover {
+    color: #ff3333;            /* Lighter red on hover */
+  }

@@ -2,7 +2,7 @@
 <div>
     <nav>
         <button mat-button color="primary" (click)="redirectProfile()">User Profile</button>
-        <button mat-button color="primary" (click)="logout()">Logout</button>
+        <button class="logout-button" mat-button color="primary" (click)="logout()">Logout</button>
     </nav>
     <div  style="display: flex;" >
         <mat-card class="mat-card-body" *ngFor="let movie of movies;" style="flex: 1 1 auto;" >

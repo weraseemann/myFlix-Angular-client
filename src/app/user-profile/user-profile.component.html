@@ -1,4 +1,4 @@
-
+<nav>
 <button class="logout-button"
     mat-raised-button
     (click)="logout()"
@@ -7,7 +7,7 @@
 >
 Logout
 </button>
-
+</nav>
 <mat-card>
     <mat-card-header>
     <mat-card-title>User Profile</mat-card-title>
@@ -60,15 +60,16 @@ Logout
         </form>
     </mat-card-content>
     <mat-card-actions>
-        <button
+        <button 
         mat-raised-button
+        class="mat-card-button"
         (click)="updateUser()"
         color="primary"
         style="margin-right: 10px;"
         >
         Update
         </button>
-        <button
+        <button class="mat-card-button"
         mat-raised-button
         (click)="resetUser()"
         color="primary"
@@ -76,7 +77,7 @@ Logout
         >
         Reset
         </button>
-        <button
+        <button class="mat-card-button"
         mat-raised-button
         (click)="backToMovie()"
         color="primary"
@@ -86,8 +87,10 @@ Logout
         </button>
     </mat-card-actions>
     <!-- Favorite Movies -->
-    <mat-card-title>Favorite Movies</mat-card-title>
+
+    
     <div style="display: flex;">
+        <mat-card-title>Favorite Movies</mat-card-title>
         <mat-card *ngFor="let movie of this.favoriteMovies;" style="width: 280px; margin-right: 10px;">
             <mat-card-header>
                 <mat-card-title>{{movie.title}}</mat-card-title>

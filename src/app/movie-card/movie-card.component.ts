@@ -1,7 +1,6 @@
 // src/app/movie-card/movie-card.component.ts
 import { Component, OnInit } from '@angular/core';
-import { FetchApiDataService } from '../fetch-api-data.service'
-
+import { FetchApiDataService } from '../fetch-api-data.service';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { MessageBoxComponent } from '../message-box/message-box.component';
@@ -30,7 +29,7 @@ export class MovieCardComponent implements OnInit {
 
           let user = JSON.parse(localStorage.getItem("user") || "");
           this.movies.forEach((movie: any) => {
-              movie.isFavorite = user.favoriteMovies.includes(movie.id);
+              movie.isFavorite = user.favoriteMovies.includes(movie._id);
           })
           return this.movies;
       }, err => {
@@ -49,9 +48,9 @@ export class MovieCardComponent implements OnInit {
 
   modifyFavoriteMovies(movie: any): void {
       let user = JSON.parse(localStorage.getItem("user") || "");
-      let icon = document.getElementById(`${movie.id}-favorite-icon`);
+      let icon = document.getElementById(`${movie._id}-favorite-icon`);
 
-      if (user.favoriteMovies.includes(movie.id)) {
+      if (user.favoriteMovies.includes(movie._id)) {
           this.fetchApiData.removeFavoriteMovie(movie.title).subscribe(res => {
               icon?.setAttribute("fontIcon", "favorite_border");
 

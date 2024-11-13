@@ -51,7 +51,6 @@ const appRoutes: Routes = [
     AppRoutingModule,
     MatInputModule,
     MatButtonModule,
-    // AppComponent,
     MatCardModule,
     MatCardActions,
     MatFormFieldModule,

@@ -46,17 +46,17 @@ export class MovieCardComponent implements OnInit {
       this.router.navigate(["profile"]);
   }
 
-  modifyFavoriteMovies(movie: any): void {
+  toggleFavoriteMovie(movie: any): void {
       let user = JSON.parse(localStorage.getItem("user") || "");
       let icon = document.getElementById(`${movie._id}-favorite-icon`);
 
       if (user.favoriteMovies.includes(movie._id)) {
           this.fetchApiData.removeFavoriteMovie(movie.title).subscribe(res => {
-              icon?.setAttribute("fontIcon", "favorite_border");
-
-              console.log("del success")
+            movie.isFavorite = false; // Update UI state
+            icon?.setAttribute("fontIcon", "favorite_border");
+              console.log(`${movie.title} removed from favorites.`)
               console.log(res);
-              user.favoriteMovies = res.favoriteMovies;
+              user.favoriteMovies = res.FavoriteMovies;
               localStorage.setItem("user", JSON.stringify(user));
           }, err => {
               console.error(err)
@@ -65,7 +65,7 @@ export class MovieCardComponent implements OnInit {
           
           this.fetchApiData.addFavoriteMovie(movie.title).subscribe(res => {
               icon?.setAttribute("fontIcon", "favorite");
-              console.log("add success")
+              console.log(`${movie.title} added to favorites.`)
               console.log(res);
               user.favoriteMovies = res.favoriteMovies;
               localStorage.setItem("user", JSON.stringify(user));

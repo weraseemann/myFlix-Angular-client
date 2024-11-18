@@ -32,7 +32,7 @@ export class UserProfileComponent implements OnInit {
         token: this.userData.token
       };
       localStorage.setItem("user", JSON.stringify(this.userData));
-      this.getfavoriteMovies();
+      this.getFavoriteMovies();
     }, (err: any) => {
       console.error(err)
     })
@@ -44,7 +44,7 @@ export class UserProfileComponent implements OnInit {
     this.router.navigate(["movies"]);
   }
 
-  getfavoriteMovies(): void {
+  getFavoriteMovies(): void {
     this.fetchApiData.getAllMovies().subscribe((res: any) => {
       this.favoriteMovies = res.filter((movie: any) => {
         return this.userData.favoriteMovies.includes(movie._id)
@@ -63,7 +63,7 @@ export class UserProfileComponent implements OnInit {
         token: this.userData.token
       };
       localStorage.setItem("user", JSON.stringify(this.userData));
-      this.getfavoriteMovies();
+      this.getFavoriteMovies();
     })
   }
 

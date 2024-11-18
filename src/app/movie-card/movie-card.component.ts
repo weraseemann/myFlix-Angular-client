@@ -26,11 +26,11 @@ export class MovieCardComponent implements OnInit {
   getMovies(): void {
       this.fetchApiData.getAllMovies().subscribe(res => {
           this.movies = res;
-
           let user = JSON.parse(localStorage.getItem("user") || "");
           this.movies.forEach((movie: any) => {
-              movie.isFavorite = user.favoriteMovies.includes(movie._id);
-          })
+            if (user && Array.isArray(user.FavouriteMovies)) {
+              movie.isFavorite= user.FavouriteMovies.includes(movie._id);
+          }})
           return this.movies;
       }, err => {
           console.error(err)
@@ -46,28 +46,32 @@ export class MovieCardComponent implements OnInit {
       this.router.navigate(["profile"]);
   }
 
+
   toggleFavoriteMovie(movie: any): void {
       let user = JSON.parse(localStorage.getItem("user") || "");
       let icon = document.getElementById(`${movie._id}-favorite-icon`);
+      console.log(user, 'user, toggle');
+      console.log(movie, 'movie, toggle');
 
-      if (user.favoriteMovies.includes(movie._id)) {
-          this.fetchApiData.removeFavoriteMovie(movie.title).subscribe(res => {
+      if (user.FavouriteMovies?.includes(movie._id)) {
+          this.fetchApiData.removeFavoriteMovie(movie._id).subscribe(res => {
             movie.isFavorite = false; // Update UI state
             icon?.setAttribute("fontIcon", "favorite_border");
               console.log(`${movie.title} removed from favorites.`)
               console.log(res);
-              user.favoriteMovies = res.FavoriteMovies;
+              user.FavouriteMovies = res.FavouriteMovies;
               localStorage.setItem("user", JSON.stringify(user));
           }, err => {
               console.error(err)
           })
       } else {
           
-          this.fetchApiData.addFavoriteMovie(movie.title).subscribe(res => {
+          this.fetchApiData.addFavoriteMovie(movie._id).subscribe(res => {
+            movie.isFavorite = true; // Update UI state
               icon?.setAttribute("fontIcon", "favorite");
               console.log(`${movie.title} added to favorites.`)
               console.log(res);
-              user.favoriteMovies = res.favoriteMovies;
+              user.FavouriteMovies = res.FavouriteMovies;
               localStorage.setItem("user", JSON.stringify(user));
           }, err => {
               console.error(err)

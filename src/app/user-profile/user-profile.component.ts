@@ -11,16 +11,17 @@ import { MatSnackBar } from '@angular/material/snack-bar'; // Optional, if you w
 export class UserProfileComponent implements OnInit {
   userData: any = {};
   favoriteMovies: any[] = [];
+  movies: any[] = [];
   constructor(
     public fetchApiData: FetchApiDataService,
     public snackBar: MatSnackBar, // Optional for showing feedback
     public router: Router
   ) {
-    this.userData = JSON.parse(localStorage.getItem("user") || "");
+    //this.userData = JSON.parse(localStorage?.getItem("user") || "");
   }
 
   ngOnInit(): void {
-    this.getUser();
+    this.getFavoriteMovies();
   }
 
   updateUser(): void {
@@ -46,16 +47,18 @@ export class UserProfileComponent implements OnInit {
 
   getFavoriteMovies(): void {
     this.fetchApiData.getAllMovies().subscribe((res: any) => {
+      let user = JSON.parse(localStorage.getItem("user") || "");
+      this.movies=res;
       this.favoriteMovies = res.filter((movie: any) => {
-        return this.userData.favoriteMovies.includes(movie._id)
+        return user.FavouriteMovies.includes(movie._id)
       })
     }, (err: any) => {
       console.error(err);
     });
   }
 
-  getUser(): void {
-    this.fetchApiData.getUserData().Username.subscribe((res: any) => {
+  /* getUser(): void {
+    this.fetchApiData.getUserData(res: any) => {
       this.userData = {
         ...res,
         id: res._id,
@@ -64,25 +67,37 @@ export class UserProfileComponent implements OnInit {
       };
       localStorage.setItem("user", JSON.stringify(this.userData));
       this.getFavoriteMovies();
-    })
-  }
+    }
+  } */
 
   // Method to remove a movie from favorites
-  removeFavoriteMovie(movieTitle: string): void {
-    this.fetchApiData.removeFavoriteMovie(movieTitle).subscribe((response: any) => {
-      // Remove the movie from the favoriteMovies array
-      this.favoriteMovies = this.favoriteMovies.filter((movie) => movie !== movieTitle);
+  removeFavoriteMovie(movie: any): void {
+    let user = JSON.parse(localStorage.getItem("user") || "");
 
-      // Provide feedback to the user
-      this.snackBar.open(`${movieTitle} has been removed from your favorites`, 'OK', {
-        duration: 2000,
-      });
-    }, (error) => {
-      console.error(error);
-      this.snackBar.open('Error: Movie could not be removed', 'OK', {
-        duration: 2000,
-      });
-    });
+    this.fetchApiData.removeFavoriteMovie(movie._id).subscribe(res => {
+        user.FavouriteMovies = res.FavouriteMovies;
+        localStorage.setItem("user", JSON.stringify(user));
+        this.favoriteMovies = this.movies.filter((movie: any) => {
+          return res.FavouriteMovies.includes(movie._id)
+
+        })
+    }, err => {
+        console.error(err)
+    })
+  //   this.fetchApiData.removeFavoriteMovie(movie._id).subscribe((response: any) => {
+  //     // Remove the movie from the favoriteMovies array
+  //     this.favoriteMovies = this.favoriteMovies.filter((movie) => movie !== movieTitle);
+
+  //     // Provide feedback to the user
+  //     this.snackBar.open(`${movieTitle} has been removed from your favorites`, 'OK', {
+  //       duration: 2000,
+  //     });
+  //   }, (error) => {
+  //     console.error(error);
+  //     this.snackBar.open('Error: Movie could not be removed', 'OK', {
+  //       duration: 2000,
+  //     });
+  //   });
   }
   
   logout(): void {

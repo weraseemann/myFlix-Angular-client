@@ -1,5 +1,9 @@
 import { Injectable, OnInit } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpErrorResponse} from '@angular/common/http';
+import {
+  HttpClient,
+  HttpHeaders,
+  HttpErrorResponse,
+} from '@angular/common/http';
 import { catchError } from 'rxjs/internal/operators/catchError';
 import { Observable, throwError } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -10,14 +14,18 @@ const apiUrl = 'https://mymovie-ff36c9df3695.herokuapp.com/';
 @Injectable({
   providedIn: 'root',
 })
-export class FetchApiDataService implements OnInit{
-  
+export class FetchApiDataService {
   constructor(private http: HttpClient) {}
 
-  ngOnInit(): void {
-    console.log('ngOnInit: Component has been initialized.');
+  // Headers with token for authenticated routes
+  private getHeaders(): HttpHeaders {
+    const token = localStorage.getItem('token');
+    console.log('token token', token);
+    return new HttpHeaders({
+      Authorization: 'Bearer ' + token,
+    });
   }
-
+  // Get token from local storage
   public getToken(): any {
     const token = localStorage.getItem('token');
     return token ? token : null;
@@ -51,7 +59,6 @@ export class FetchApiDataService implements OnInit{
       .get(apiUrl + `users/${username}`, {
         headers: new HttpHeaders({
           Authorization: 'Bearer ' + this.getToken(),
-          'Content-Type': 'application/json',
         }),
       })
       .pipe(map(this.extractResponseData), catchError(this.handleError));
@@ -66,10 +73,7 @@ export class FetchApiDataService implements OnInit{
           'Content-Type': 'application/json',
         }),
       })
-      .pipe(
-        map(this.extractResponseData), 
-        catchError(this.handleError)
-        );
+      .pipe(map(this.extractResponseData), catchError(this.handleError));
   }
 
   // Delete user
@@ -81,31 +85,25 @@ export class FetchApiDataService implements OnInit{
           Authorization: 'Bearer ' + this.getToken(),
         }),
       })
-      .pipe(
-        map(this.extractResponseData), 
-        catchError(this.handleError)
-        );
+      .pipe(map(this.extractResponseData), catchError(this.handleError));
   }
 
-  //Get all movies
-  public getAllMovies(): Observable<any> {
-    return this.http
-      .get(apiUrl + 'movies', {
-        headers: new HttpHeaders({
-          Authorization: 'Bearer ' + this.getToken(),
-        }),
-      })
-      .pipe(
-        map(this.extractResponseData), 
-        catchError(this.handleError)
-        );
-  }
-  // // Get all movies
+  // Get all movies
   // public getAllMovies(): Observable<any> {
   //   return this.http
-  //     .get(apiUrl + 'movies', { headers: this.getHeaders() })
+  //     .get(apiUrl + 'movies', {
+  //       headers: new HttpHeaders({
+  //         Authorization: 'Bearer ' + this.getToken(),
+  //       }),
+  //     })
   //     .pipe(map(this.extractResponseData), catchError(this.handleError));
   // }
+  // Get all movies
+  public getAllMovies(): Observable<any> {
+    return this.http
+      .get(apiUrl + 'movies', { headers: this.getHeaders() })
+      .pipe(map(this.extractResponseData), catchError(this.handleError));
+  }
   // Get a movie by title
   public getMovie(title: string): Observable<any> {
     return this.http
@@ -114,10 +112,7 @@ export class FetchApiDataService implements OnInit{
           Authorization: 'Bearer ' + this.getToken(),
         }),
       })
-      .pipe(
-        map(this.extractResponseData), 
-        catchError(this.handleError)
-        );
+      .pipe(map(this.extractResponseData), catchError(this.handleError));
   }
 
   // Get director by name
@@ -128,10 +123,7 @@ export class FetchApiDataService implements OnInit{
           Authorization: `Bearer ${this.getToken()}`,
         }),
       })
-      .pipe(
-        map(this.extractResponseData), 
-        catchError(this.handleError)
-        );
+      .pipe(map(this.extractResponseData), catchError(this.handleError));
   }
 
   // Get genre by name
@@ -160,10 +152,7 @@ export class FetchApiDataService implements OnInit{
           }),
         }
       )
-      .pipe(
-        map(this.extractResponseData), 
-        catchError(this.handleError)
-        );
+      .pipe(map(this.extractResponseData), catchError(this.handleError));
   }
 
   // Remove a movie from user's favorites
@@ -175,10 +164,7 @@ export class FetchApiDataService implements OnInit{
           Authorization: 'Bearer ' + this.getToken(),
         }),
       })
-      .pipe(
-        map(this.extractResponseData), 
-        catchError(this.handleError)
-        );
+      .pipe(map(this.extractResponseData), catchError(this.handleError));
   }
 
   //Get favorite movies
@@ -190,10 +176,7 @@ export class FetchApiDataService implements OnInit{
           Authorization: 'Bearer ' + this.getToken(),
         }),
       })
-      .pipe(
-        map(this.extractResponseData), 
-        catchError(this.handleError)
-        );
+      .pipe(map(this.extractResponseData), catchError(this.handleError));
   }
 
   // Non-typed response extraction

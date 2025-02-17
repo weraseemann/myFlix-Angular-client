@@ -1,6 +1,14 @@
 <nav>
 <button mat-raised-button
     class="logout-button"
+    (click)="deleteUser()"
+    color="primary"
+    style="margin-right: 10px;"
+>
+Delete Account
+</button>
+<button mat-raised-button
+    class="logout-button"
     (click)="logout()"
     color="primary"
     style="margin-right: 10px;"

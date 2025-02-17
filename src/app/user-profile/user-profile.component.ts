@@ -38,6 +38,18 @@ export class UserProfileComponent implements OnInit {
       console.error(err)
     })
   }
+  deleteUser(): void {
+    if (confirm("Are you sure you want to delete your account? This action cannot be undone.")) {
+      this.fetchApiData.deleteUser().subscribe(() => {
+        localStorage.clear(); // Remove user data from local storage
+        alert("Your account has been successfully deleted.");
+        this.router.navigate(["welcome"]); // Redirect to the welcome or login page
+      }, (err: any) => {
+        console.error(err);
+        alert("An error occurred while deleting your account.");
+      });
+    }
+  }
   resetUser(): void {
     this.userData = JSON.parse(localStorage.getItem("user") || "");
   }

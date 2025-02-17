@@ -93,6 +93,9 @@ Logout
         <mat-card-header>
         <mat-card-title>Favorite Movies</mat-card-title>
         </mat-card-header>
+        <div *ngIf="favoriteMovies.length === 0" class="movie-card-container" style="font-size: 18px;">
+            <p>You have no favorite movies.</p>
+        </div>
         <div style="display: flex;">
         <mat-card *ngFor="let movie of this.favoriteMovies;" style="width: 280px; margin-right: 10px;">
             <mat-card-header>

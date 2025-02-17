@@ -89,8 +89,11 @@ Logout
     <!-- Favorite Movies -->
 
     
-    <div style="display: flex;">
+    
+        <mat-card-header>
         <mat-card-title>Favorite Movies</mat-card-title>
+        </mat-card-header>
+        <div style="display: flex;">
         <mat-card *ngFor="let movie of this.favoriteMovies;" style="width: 280px; margin-right: 10px;">
             <mat-card-header>
                 <mat-card-title>{{movie.title}}</mat-card-title>

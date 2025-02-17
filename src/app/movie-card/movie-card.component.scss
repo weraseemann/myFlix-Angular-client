@@ -136,3 +136,10 @@ nav {
   .mat-icon:hover {
     color: #ff3333;            /* Lighter red on hover */
   }
+
+  /* Ensure images are the same size */
+img[mat-card-image] {
+  object-fit: cover;
+  height: 400px;
+  width: 100%;
+}

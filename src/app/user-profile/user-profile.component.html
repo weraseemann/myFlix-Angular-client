@@ -1,6 +1,6 @@
 <nav>
-<button class="logout-button"
-    mat-raised-button
+<button mat-raised-button
+    class="logout-button"
     (click)="logout()"
     color="primary"
     style="margin-right: 10px;"
@@ -60,8 +60,7 @@ Logout
         </form>
     </mat-card-content>
     <mat-card-actions>
-        <button 
-        mat-raised-button
+        <button mat-raised-button 
         class="mat-card-button"
         (click)="updateUser()"
         color="primary"
@@ -69,34 +68,32 @@ Logout
         >
         Update
         </button>
-        <button class="mat-card-button"
-        mat-raised-button
+        <button mat-raised-button 
+        class="mat-card-button"
         (click)="resetUser()"
         color="primary"
         style="margin-right: 10px;"
         >
         Reset
         </button>
-        <button class="mat-card-button"
-        mat-raised-button
+        <button mat-raised-button 
+        class="mat-card-button"
         (click)="backToMovie()"
         color="primary"
         style="margin-right: 10px;"
         >
         Back to Movies
-        </button>
+    </button>
     </mat-card-actions>
+    
     <!-- Favorite Movies -->
-
-    
-    
         <mat-card-header>
         <mat-card-title>Favorite Movies</mat-card-title>
         </mat-card-header>
         <div *ngIf="favoriteMovies.length === 0" class="movie-card-container" style="font-size: 18px;">
             <p>You have no favorite movies.</p>
         </div>
-        <div style="display: flex;">
+        <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px;">
         <mat-card *ngFor="let movie of this.favoriteMovies;" style="width: 280px; margin-right: 10px;">
             <mat-card-header>
                 <mat-card-title>{{movie.title}}</mat-card-title>
@@ -109,7 +106,7 @@ Logout
                 width="{{300}}" />
                 <mat-card-actions>
                 <button
-                mat-raised-button
+                mat-button
                 (click)="removeFavoriteMovie(movie)"
                 color="primary"
                 style="margin-right: 10px;"

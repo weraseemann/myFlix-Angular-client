@@ -57,15 +57,6 @@ nav {
     margin-right: 20px;
   }
   
-  nav.logout-button {
-    color: #ff6666;            /* Red accent for logout button */
-    background-color: #222;
-  }
-  
-  .logout-button:hover {
-    background-color: #444;
-  }
-  
   button.mat-button:hover {
     background-color: #444;    /* Darker on hover */
   }
@@ -122,10 +113,14 @@ nav {
     background-color: #555;
   }
 
-   /* Logout Button Specific Styling */
-   .logout-button {
-    color: #ff6666;            /* Red accent for logout */
+  /* Logout Button Specific Styling */
+  nav button.logout-button {
+    color: #ff6666;            /* Red accent for logout and delete*/
     background-color: #222;
+  }
+  
+  nav button.logout-button:hover {
+    background-color: #444;
   }
   
   .mat-icon {

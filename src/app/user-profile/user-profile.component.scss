@@ -112,16 +112,18 @@
   }
   
   .mat-card-button:hover {
-    background-color: #555;    /* Lighter color on hover */
+    background-color: #555;    
   }
   
   /* Logout Button Specific Styling */
-  nav button.logout-button {
-    color: #ff6666;            /* Red accent for logout */
+  nav button.logout-button, 
+  nav button.delete-button {
+    color: #ff6666;            /* Red accent for logout and delete*/
     background-color: #222;
   }
   
-  nav button.logout-button:hover {
+  nav button.logout-button:hover,
+  nav button.delete-button {
     background-color: #444;
   }
   

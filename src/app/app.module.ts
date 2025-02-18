@@ -25,7 +25,6 @@ import { MovieCardComponent } from './movie-card/movie-card.component';
 import { WelcomePageComponent } from './welcome-page/welcome-page.component';
 import { MessageBoxComponent } from './message-box/message-box.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
-import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 const appRoutes: Routes = [
   { path: 'welcome', component: WelcomePageComponent },
@@ -66,7 +65,6 @@ const appRoutes: Routes = [
     provideHttpClient(
       withFetch() // Enable fetch APIs
     ), 
-    { provide: LocationStrategy, useClass: HashLocationStrategy },
   ],
   bootstrap: [AppComponent],
 })

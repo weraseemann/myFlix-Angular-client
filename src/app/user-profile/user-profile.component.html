@@ -1,12 +1,13 @@
 <nav>
-<button mat-raised-button
-    class="delete-button"
-    (click)="deleteUser()"
+    <button mat-raised-button 
+    class="mat-card-button"
+    (click)="backToMovie()"
     color="primary"
     style="margin-right: 10px;"
->
-Delete Account
+    >
+    Back to Movies
 </button>
+
 <button mat-raised-button
     class="logout-button"
     (click)="logout()"
@@ -84,14 +85,14 @@ Logout
         >
         Reset
         </button>
-        <button mat-raised-button 
-        class="mat-card-button"
-        (click)="backToMovie()"
-        color="primary"
-        style="margin-right: 10px;"
-        >
-        Back to Movies
-    </button>
+        <button mat-raised-button
+    class="delete-button"
+    (click)="deleteUser()"
+    color="primary"
+    style="margin-right: 10px;"
+>
+Delete Account
+</button>
     </mat-card-actions>
     
     <!-- Favorite Movies -->
@@ -102,7 +103,7 @@ Logout
             <p>You have no favorite movies.</p>
         </div>
         <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px;">
-        <mat-card *ngFor="let movie of this.favoriteMovies;" style="width: 280px; margin-right: 10px;">
+        <mat-card *ngFor="let movie of this.favoriteMovies;" style="width: 280px; margin: 20px;">
             <mat-card-header>
                 <mat-card-title>{{movie.title}}</mat-card-title>
                     <mat-card-subtitle>Directed by: {{movie.director.name}}</mat-card-subtitle>

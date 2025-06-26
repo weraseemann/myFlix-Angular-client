@@ -8,16 +8,16 @@
   
   /* Card Styling */
   mat-card {
-    background-color: #1e1e1e; /* Darker card background */
+    background-color: #1e1e1e; 
     color: #e0e0e0;            
     border: 1px solid #333;    
     border-radius: 8px;        
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Subtle shadow */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); 
   }
   
   /* Card Title and Subtitle */
   mat-card-title {
-    color: #ffcc00;            /* Accent color for titles */
+    color: #ffcc00;            
   }
   mat-card-subtitle {
     color: #999;               
@@ -121,7 +121,7 @@
   /* Logout Button Specific Styling */
   nav button.logout-button, 
   button.delete-button {
-    color: #ff6666;            /* Red accent for logout and delete*/
+    color: #ff6666;            
     background-color: #222;
   }
   
